@@ -1,0 +1,42 @@
+#if($isPop)
+    #parse("blank_startpart.vm")
+#else
+    #parse("default_startpart.vm")
+#end
+
+<textarea id="vm" style="width: 100%;height:400px;">
+    $!{vm_content}
+</textarea>
+
+
+<button id="sub">提交</button>
+
+#if($isPop)
+    #parse("blank_endpart.vm")
+#else
+    #parse("default_endpart.vm")
+#end
+##<script src="$staticResourcePath/app/js/third-api-test.js"></script>
+<script>
+    $("#sub").click(function(){
+        $.ajax({
+            url: "/extend/vm_upload.json",
+            data: {
+                type:1,
+                vm:$("#vm").val()
+            },
+            type: 'post',
+            success: function(data){
+                if(data.resultCode != '0') {
+                    alert(data.resultMessage);
+                    return;
+                }else {
+                    window.location.reload();
+                }
+            }
+        });
+    });
+
+
+
+</script>

@@ -1,0 +1,46 @@
+<module code="sec">
+  <page id="user_mgr" name="用户管理" page-template="qlist" data-set="sec/user" no-login="false">
+    <component id="qForm" data-set="sec/user_DS4Q"/>
+  </page>
+  <page id="user_create" name="用户创建" page-template="create" data-set="sec/user" rel-page="user_mgr" no-login="false"/>
+  <page id="user_edit" name="用户修改" page-template="edit" data-set="sec/user" rel-page="user_mgr" no-login="false"/>
+  <page id="user_detail" name="用户明细" page-template="edit" data-set="sec/user" rel-page="user_mgr" no-login="false"/>
+  <page id="organize_mgr" name="组织管理" page-template="editByCategory" data-set="sec/organize" no-login="false"/>
+  <page id="organize_create" name="组织创建" page-template="create" data-set="sec/organize" rel-page="organize_mgr" no-login="false"/>
+  <page id="organize_edit" name="组织修改" page-template="edit" data-set="sec/organize" rel-page="organize_mgr" no-login="false"/>
+  <page id="organize_detail" name="组织明细" page-template="edit" data-set="sec/organize" rel-page="organize_mgr" no-login="false"/>
+  <page id="menu_mgr" name="菜单管理" page-template="editByCategory" data-set="sec/menu" no-login="false"/>
+  <page id="menu_create" name="菜单创建" page-template="create" data-set="sec/menu" rel-page="menu_mgr" no-login="false"/>
+  <page id="menu_edit" name="菜单修改" page-template="edit" data-set="sec/menu" rel-page="menu_mgr" no-login="false"/>
+  <page id="menu_detail" name="菜单明细" page-template="edit" data-set="sec/menu" rel-page="menu_mgr" no-login="false"/>
+  <page id="role_mgr" name="角色管理" page-template="qlist" data-set="sec/role" no-login="false">
+    <component id="qForm" data-set="sec/role_DS4Q"/>
+  </page>
+  <page id="role_create" name="角色添加" page-template="cComb" data-set="sec/role" rel-page="role_mgr" no-login="false">
+    <component id="cForm" data-set="sec/role"/>
+    <component id="cList" data-set="sec/role_authorize"/>
+  </page>
+  <page id="role_edit" name="角色修改" page-template="eComb" data-set="sec/role" rel-page="role_mgr" no-login="false">
+    <component id="eForm" data-set="sec/role"/>
+    <component id="eList" data-set="sec/role_authorize"/>
+  </page>
+  <page id="role_detail" name="角色查看" page-template="dComb" data-set="sec/role" rel-page="role_mgr" no-login="false">
+    <component id="dForm" data-set="sec/role"/>
+    <component id="qList" data-set="sec/role_authorize"/>
+  </page>
+  <page id="dictionary_mgr" name="字典管理" page-template="qlist" data-set="sec/dictionary" no-login="false">
+    <component id="qForm" data-set="sec/dictionary_DS4Q"/>
+  </page>
+  <page id="dictionary_create" name="字典添加" page-template="cComb" data-set="sec/dictionary" rel-page="dictionary_mgr" no-login="false">
+    <component id="cForm" data-set="sec/dictionary"/>
+    <component id="cList" data-set="sec/dictionary_item"/>
+  </page>
+  <page id="dictionary_edit" name="字典修改" page-template="eComb" data-set="sec/dictionary" rel-page="dictionary_mgr" no-login="false">
+    <component id="eForm" data-set="sec/dictionary"/>
+    <component id="eList" data-set="sec/dictionary_item"/>
+  </page>
+  <page id="dictionary_detail" name="字典查看" page-template="dComb" data-set="sec/dictionary" rel-page="dictionary_mgr" no-login="false">
+    <component id="dForm" data-set="sec/dictionary"/>
+    <component id="qList" data-set="sec/dictionary_item"/>
+  </page>
+</module>

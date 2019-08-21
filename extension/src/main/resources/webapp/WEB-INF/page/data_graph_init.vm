@@ -1,0 +1,18 @@
+###if($isPop)
+##    #parse("blank_startpart.vm")
+###else
+##    #parse("default_startpart.vm")
+###end
+
+$!{vm_content}
+##
+###if($isPop)
+##    #parse("blank_endpart.vm")
+###else
+##    #parse("default_endpart.vm")
+###end
+####<script src="$staticResourcePath/app/js/third-api-test.js"></script>
+##<script>
+##
+##
+##</script>

@@ -1,0 +1,102 @@
+<module code="cfg">
+  <page id="cfg_db_mgr" name="数据库管理" page-template="qlist" data-set="cfg/cfg_db" no-login="false">
+    <component id="qForm" data-set="cfg/cfg_db_DS4Q"/>
+      <component id="qList" data-set="cfg/cfg_db" event-extend="false">
+          <event rel="#EOFR.goto.edit"/>
+          <event name="goto">
+              <attach anchor="EOFR">
+                  <appendElement type="icon" param='{fillclass:"btn-success",iconclass:"icon-cogs"}'></appendElement>
+              </attach>
+              <source scope="CROW" param="dbId={id}"></source>
+              <effect type="pageFwd" action='/cfg/table_graph_init.html' isStack="true"></effect>
+              <effect type="component.reload"></effect>
+          </event>
+          <event name="goto">
+              <attach anchor="EOFR">
+                  <appendElement type="icon" param='{fillclass:"btn-success",iconclass:"icon-cogs"}'></appendElement>
+              </attach>
+              <source scope="CROW" param="dbId={id}"></source>
+              <effect type="pageFwd" action='/cfg/data_graph_init.html' isStack="true"></effect>
+              <effect type="component.reload"></effect>
+          </event>
+          <event rel="#EOFR.confirm.delete"/>
+          <event rel="#BOFC.goto.create"/>
+      </component>
+  </page>
+    <page  id="table_graph_init" name="数据表力导图" page-template="dynamic" vmpath="table_graph_init.vm"  no-login="true">
+        <component  id="virtualComponent" data-set="SYSTEM_EMPTY_DATASET"></component>
+    </page>
+    <page  id="data_graph_init" name="数据力导图" page-template="dynamic" vmpath="data_graph_init.vm"  no-login="true">
+        <component  id="virtualComponent" data-set="SYSTEM_EMPTY_DATASET"></component>
+    </page>
+    <page  id="table_vm_upload" name="VM模板上传" page-template="dynamic" vmpath="table_vm_upload.vm"  no-login="true">
+        <component  id="virtualComponent" data-set="SYSTEM_EMPTY_DATASET"></component>
+    </page>
+    <page  id="data_vm_upload" name="VM模板上传" page-template="dynamic" vmpath="data_vm_upload.vm"  no-login="true">
+        <component  id="virtualComponent" data-set="SYSTEM_EMPTY_DATASET"></component>
+    </page>
+  <page id="cfg_db_create" name="数据库创建" page-template="create" data-set="cfg/cfg_db" rel-page="cfg_db_mgr" no-login="false"/>
+  <page id="cfg_db_edit" name="数据库修改" page-template="edit" data-set="cfg/cfg_db" rel-page="cfg_db_mgr" no-login="false"/>
+  <page id="cfg_db_detail" name="数据库明细" page-template="edit" data-set="cfg/cfg_db" rel-page="cfg_db_mgr" no-login="false"/>
+  <page id="cfg_dataset_mgr" name="数据集管理" page-template="qlist" data-set="cfg/cfg_dataset" no-login="false">
+    <component id="qForm" data-set="cfg/cfg_dataset_DS4Q"/>
+    <component id="qList" data-set="cfg/cfg_dataset" event-extend="false">
+      <event rel="#EOFR.goto.edit"/>
+      <event name="goto">
+        <attach anchor="EOFR">
+          <appendElement type="icon" param='{fillclass:"btn-success",iconclass:"icon-cogs"}'></appendElement>
+        </attach>
+        <source scope="CROW" param="id={id}"></source>
+        <effect type="pageFwd" action='/cfg/list_meta_xeditor.html' isStack="true"></effect>
+        <effect type="component.reload"></effect>
+      </event>
+        <event name="goto">
+            <attach anchor="EOFR">
+                <appendElement type="icon" param='{fillclass:"btn-success",iconclass:"icon-cogs"}'></appendElement>
+            </attach>
+            <source scope="CROW" param="id={id}"></source>
+            <effect type="pageFwd" action='/cfg/cond_meta_xeditor.html' isStack="true"></effect>
+            <effect type="component.reload"></effect>
+        </event>
+        <event name="goto">
+            <attach anchor="EOFR">
+                <appendElement type="icon" param='{fillclass:"btn-success",iconclass:"icon-cogs"}'></appendElement>
+            </attach>
+            <source scope="CROW" param="id={id}"></source>
+            <effect type="pageFwd" action='/cfg/create_meta_xeditor.html' isStack="true"></effect>
+            <effect type="component.reload"></effect>
+        </event>
+        <event name="goto">
+            <attach anchor="EOFR">
+                <appendElement type="icon" param='{fillclass:"btn-success",iconclass:"icon-cogs"}'></appendElement>
+            </attach>
+            <source scope="CROW" param="id={id}"></source>
+            <effect type="pageFwd" action='/cfg/update_meta_xeditor.html' isStack="true"></effect>
+            <effect type="component.reload"></effect>
+        </event>
+      <event rel="#EOFR.confirm.delete"/>
+      <event rel="#BOFC.goto.create"/>
+    </component>
+  </page>
+  <page id="cfg_dataset_create" name="数据集创建" page-template="create" data-set="cfg/cfg_dataset" rel-page="cfg_dataset_mgr" no-login="false"/>
+  <page id="cfg_dataset_edit" name="数据集修改" page-template="edit" data-set="cfg/cfg_dataset" rel-page="cfg_dataset_mgr" no-login="false"/>
+  <page id="cfg_dataset_detail" name="数据集明细" page-template="edit" data-set="cfg/cfg_dataset" rel-page="cfg_dataset_mgr" no-login="false"/>
+  <page id="cfg_relat_mgr" name="数据关系管理" page-template="qlist" data-set="cfg/cfg_relat" no-login="false">
+    <component id="qForm" data-set="cfg/cfg_relat_DS4Q"/>
+  </page>
+  <page id="cfg_relat_create" name="数据关系创建" page-template="create" data-set="cfg/cfg_relat" rel-page="cfg_relat_mgr" no-login="false"/>
+  <page id="cfg_relat_edit" name="数据关系修改" page-template="edit" data-set="cfg/cfg_relat" rel-page="cfg_relat_mgr" no-login="false"/>
+  <page id="cfg_relat_detail" name="数据关系明细" page-template="edit" data-set="cfg/cfg_relat" rel-page="cfg_relat_mgr" no-login="false"/>
+  <page id="list_meta_xeditor" name="查询列表META信息" page-template="container">
+    <component id="container" data-set="hffile/dataset_meta_xeditor"  dataid="DATA-SET-REL://cfg_dataset/q_list_xml/id" />
+  </page>
+  <page id="cond_meta_xeditor" name="查询条件META信息" page-template="container">
+    <component id="container" data-set="hffile/dataset_meta_xeditor"  dataid="DATA-SET-REL://cfg_dataset/q_cond_xml/id" />
+  </page>
+  <page id="create_meta_xeditor" name="新增表单META信息" page-template="container">
+    <component id="container" data-set="hffile/dataset_meta_xeditor"  dataid="DATA-SET-REL://cfg_dataset/e_create_xml/id" />
+  </page>
+  <page id="update_meta_xeditor" name="修改表单META信息" page-template="container">
+    <component id="container" data-set="hffile/dataset_meta_xeditor"  dataid="DATA-SET-REL://cfg_dataset/e_update_xml/id" />
+  </page>
+</module>

@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hframework.graphdb.cfg.dao.CfgDatasetMapper" >
+  <resultMap id="BaseResultMap" type="com.hframework.graphdb.cfg.domain.model.CfgDataset" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="table_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="creator_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="modifier_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="modify_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="db_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="table_desc" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hframework.graphdb.cfg.domain.model.CfgDataset" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="table_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="creator_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="modifier_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="modify_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="db_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="table_desc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="q_list_xml" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+      <arg column="q_cond_xml" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+      <arg column="e_create_xml" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+      <arg column="e_update_xml" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, `table_name`, `status`, creator_id, create_time, modifier_id, modify_time, db_id, 
+    table_desc
+  </sql>
+  <sql id="Blob_Column_List" >
+    q_list_xml, q_cond_xml, e_create_xml, e_update_xml
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.hframework.graphdb.cfg.domain.model.CfgDataset_Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `cfg_dataset`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hframework.graphdb.cfg.domain.model.CfgDataset_Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `cfg_dataset`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitEnd != null and limitEnd != 0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `cfg_dataset`
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from `cfg_dataset`
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hframework.graphdb.cfg.domain.model.CfgDataset_Example" >
+    delete from `cfg_dataset`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hframework.graphdb.cfg.domain.model.CfgDataset" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_dataset` (`table_name`, `status`, creator_id, 
+      create_time, modifier_id, modify_time, 
+      db_id, table_desc, q_list_xml, 
+      q_cond_xml, e_create_xml, e_update_xml
+      )
+    values (#{tableName,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{creatorId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifierId,jdbcType=BIGINT}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{dbId,jdbcType=BIGINT}, #{tableDesc,jdbcType=VARCHAR}, #{qListXml,jdbcType=LONGVARCHAR}, 
+      #{qCondXml,jdbcType=LONGVARCHAR}, #{eCreateXml,jdbcType=LONGVARCHAR}, #{eUpdateXml,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hframework.graphdb.cfg.domain.model.CfgDataset" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_dataset`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tableName != null" >
+        `table_name`,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifierId != null" >
+        modifier_id,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="dbId != null" >
+        db_id,
+      </if>
+      <if test="tableDesc != null" >
+        table_desc,
+      </if>
+      <if test="qListXml != null" >
+        q_list_xml,
+      </if>
+      <if test="qCondXml != null" >
+        q_cond_xml,
+      </if>
+      <if test="eCreateXml != null" >
+        e_create_xml,
+      </if>
+      <if test="eUpdateXml != null" >
+        e_update_xml,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tableName != null" >
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null" >
+        #{modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dbId != null" >
+        #{dbId,jdbcType=BIGINT},
+      </if>
+      <if test="tableDesc != null" >
+        #{tableDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="qListXml != null" >
+        #{qListXml,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="qCondXml != null" >
+        #{qCondXml,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="eCreateXml != null" >
+        #{eCreateXml,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="eUpdateXml != null" >
+        #{eUpdateXml,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hframework.graphdb.cfg.domain.model.CfgDataset_Example" resultType="java.lang.Integer" >
+    select count(*) from `cfg_dataset`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update `cfg_dataset`
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.tableName != null" >
+        `table_name` = #{record.tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        `status` = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.creatorId != null" >
+        creator_id = #{record.creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifierId != null" >
+        modifier_id = #{record.modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifyTime != null" >
+        modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dbId != null" >
+        db_id = #{record.dbId,jdbcType=BIGINT},
+      </if>
+      <if test="record.tableDesc != null" >
+        table_desc = #{record.tableDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qListXml != null" >
+        q_list_xml = #{record.qListXml,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.qCondXml != null" >
+        q_cond_xml = #{record.qCondXml,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.eCreateXml != null" >
+        e_create_xml = #{record.eCreateXml,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.eUpdateXml != null" >
+        e_update_xml = #{record.eUpdateXml,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update `cfg_dataset`
+    set id = #{record.id,jdbcType=BIGINT},
+      `table_name` = #{record.tableName,jdbcType=VARCHAR},
+      `status` = #{record.status,jdbcType=TINYINT},
+      creator_id = #{record.creatorId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{record.modifierId,jdbcType=BIGINT},
+      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      db_id = #{record.dbId,jdbcType=BIGINT},
+      table_desc = #{record.tableDesc,jdbcType=VARCHAR},
+      q_list_xml = #{record.qListXml,jdbcType=LONGVARCHAR},
+      q_cond_xml = #{record.qCondXml,jdbcType=LONGVARCHAR},
+      e_create_xml = #{record.eCreateXml,jdbcType=LONGVARCHAR},
+      e_update_xml = #{record.eUpdateXml,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update `cfg_dataset`
+    set id = #{record.id,jdbcType=BIGINT},
+      `table_name` = #{record.tableName,jdbcType=VARCHAR},
+      `status` = #{record.status,jdbcType=TINYINT},
+      creator_id = #{record.creatorId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{record.modifierId,jdbcType=BIGINT},
+      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      db_id = #{record.dbId,jdbcType=BIGINT},
+      table_desc = #{record.tableDesc,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hframework.graphdb.cfg.domain.model.CfgDataset" >
+    update `cfg_dataset`
+    <set >
+      <if test="tableName != null" >
+        `table_name` = #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="creatorId != null" >
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null" >
+        modifier_id = #{modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dbId != null" >
+        db_id = #{dbId,jdbcType=BIGINT},
+      </if>
+      <if test="tableDesc != null" >
+        table_desc = #{tableDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="qListXml != null" >
+        q_list_xml = #{qListXml,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="qCondXml != null" >
+        q_cond_xml = #{qCondXml,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="eCreateXml != null" >
+        e_create_xml = #{eCreateXml,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="eUpdateXml != null" >
+        e_update_xml = #{eUpdateXml,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hframework.graphdb.cfg.domain.model.CfgDataset" >
+    update `cfg_dataset`
+    set `table_name` = #{tableName,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=TINYINT},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{modifierId,jdbcType=BIGINT},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      db_id = #{dbId,jdbcType=BIGINT},
+      table_desc = #{tableDesc,jdbcType=VARCHAR},
+      q_list_xml = #{qListXml,jdbcType=LONGVARCHAR},
+      q_cond_xml = #{qCondXml,jdbcType=LONGVARCHAR},
+      e_create_xml = #{eCreateXml,jdbcType=LONGVARCHAR},
+      e_update_xml = #{eUpdateXml,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hframework.graphdb.cfg.domain.model.CfgDataset" >
+    update `cfg_dataset`
+    set `table_name` = #{tableName,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=TINYINT},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{modifierId,jdbcType=BIGINT},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      db_id = #{dbId,jdbcType=BIGINT},
+      table_desc = #{tableDesc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

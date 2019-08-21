@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hframework.graphdb.cfg.dao.CfgRelatMapper" >
+  <resultMap id="BaseResultMap" type="com.hframework.graphdb.cfg.domain.model.CfgRelat" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="type" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="source_table" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="target_table" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="creator_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="modifier_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="modify_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="description" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="db_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="source_field" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="target_field" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, `type`, source_table, target_table, `status`, creator_id, create_time, modifier_id, 
+    modify_time, description, db_id, source_field, target_field
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hframework.graphdb.cfg.domain.model.CfgRelat_Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `cfg_relat`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitEnd != null and limitEnd != 0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from `cfg_relat`
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from `cfg_relat`
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hframework.graphdb.cfg.domain.model.CfgRelat_Example" >
+    delete from `cfg_relat`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hframework.graphdb.cfg.domain.model.CfgRelat" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_relat` (`type`, source_table, target_table, 
+      `status`, creator_id, create_time, 
+      modifier_id, modify_time, description, 
+      db_id, source_field, target_field
+      )
+    values (#{type,jdbcType=TINYINT}, #{sourceTable,jdbcType=VARCHAR}, #{targetTable,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{creatorId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifierId,jdbcType=BIGINT}, #{modifyTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}, 
+      #{dbId,jdbcType=BIGINT}, #{sourceField,jdbcType=VARCHAR}, #{targetField,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hframework.graphdb.cfg.domain.model.CfgRelat" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_relat`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="type != null" >
+        `type`,
+      </if>
+      <if test="sourceTable != null" >
+        source_table,
+      </if>
+      <if test="targetTable != null" >
+        target_table,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifierId != null" >
+        modifier_id,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="dbId != null" >
+        db_id,
+      </if>
+      <if test="sourceField != null" >
+        source_field,
+      </if>
+      <if test="targetField != null" >
+        target_field,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="sourceTable != null" >
+        #{sourceTable,jdbcType=VARCHAR},
+      </if>
+      <if test="targetTable != null" >
+        #{targetTable,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null" >
+        #{modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="dbId != null" >
+        #{dbId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceField != null" >
+        #{sourceField,jdbcType=VARCHAR},
+      </if>
+      <if test="targetField != null" >
+        #{targetField,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hframework.graphdb.cfg.domain.model.CfgRelat_Example" resultType="java.lang.Integer" >
+    select count(*) from `cfg_relat`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update `cfg_relat`
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.type != null" >
+        `type` = #{record.type,jdbcType=TINYINT},
+      </if>
+      <if test="record.sourceTable != null" >
+        source_table = #{record.sourceTable,jdbcType=VARCHAR},
+      </if>
+      <if test="record.targetTable != null" >
+        target_table = #{record.targetTable,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        `status` = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.creatorId != null" >
+        creator_id = #{record.creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifierId != null" >
+        modifier_id = #{record.modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="record.modifyTime != null" >
+        modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dbId != null" >
+        db_id = #{record.dbId,jdbcType=BIGINT},
+      </if>
+      <if test="record.sourceField != null" >
+        source_field = #{record.sourceField,jdbcType=VARCHAR},
+      </if>
+      <if test="record.targetField != null" >
+        target_field = #{record.targetField,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update `cfg_relat`
+    set id = #{record.id,jdbcType=BIGINT},
+      `type` = #{record.type,jdbcType=TINYINT},
+      source_table = #{record.sourceTable,jdbcType=VARCHAR},
+      target_table = #{record.targetTable,jdbcType=VARCHAR},
+      `status` = #{record.status,jdbcType=TINYINT},
+      creator_id = #{record.creatorId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{record.modifierId,jdbcType=BIGINT},
+      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      description = #{record.description,jdbcType=VARCHAR},
+      db_id = #{record.dbId,jdbcType=BIGINT},
+      source_field = #{record.sourceField,jdbcType=VARCHAR},
+      target_field = #{record.targetField,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hframework.graphdb.cfg.domain.model.CfgRelat" >
+    update `cfg_relat`
+    <set >
+      <if test="type != null" >
+        `type` = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="sourceTable != null" >
+        source_table = #{sourceTable,jdbcType=VARCHAR},
+      </if>
+      <if test="targetTable != null" >
+        target_table = #{targetTable,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="creatorId != null" >
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null" >
+        modifier_id = #{modifierId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="dbId != null" >
+        db_id = #{dbId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceField != null" >
+        source_field = #{sourceField,jdbcType=VARCHAR},
+      </if>
+      <if test="targetField != null" >
+        target_field = #{targetField,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hframework.graphdb.cfg.domain.model.CfgRelat" >
+    update `cfg_relat`
+    set `type` = #{type,jdbcType=TINYINT},
+      source_table = #{sourceTable,jdbcType=VARCHAR},
+      target_table = #{targetTable,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=TINYINT},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{modifierId,jdbcType=BIGINT},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR},
+      db_id = #{dbId,jdbcType=BIGINT},
+      source_field = #{sourceField,jdbcType=VARCHAR},
+      target_field = #{targetField,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,150 @@
+<dataset>
+  <module>hffile</module>
+  <code>dataset_meta_xeditor</code>
+  <entity>cfg_dataset</entity>
+  <name>DataSet元信息维护</name>
+  <source>file</source>
+  <descriptor>
+
+    <node code="dataset" name="列信息" editor="eForm">
+      <node code="edit.field[]" name="编辑列信息" editor="virtualContainer,eList" event-extend=""><!-- editor不能为"eList"  -->
+        <node code="enum[]" name="取值范围" editor="eList" events="TOGGLE"/>
+      </node>
+      <node code="rule.field[]" name="规则列信息" editor="eList" event-extend="false" >
+        <!--<node code="enum[]" name="取值范围" editor="eList" events="TOGGLE"/>-->
+      </node>
+      <node code="hid.field[]" name="隐藏列信息" editor="eList" event-extend="false">
+        <!--<node code="enum[]" name="取值范围" editor="eList" events="TOGGLE"/>-->
+      </node>
+    </node>
+
+    <helper-script>
+      <![CDATA[
+            var link=document.createElement("link");
+            link.rel="stylesheet";
+            link.href="/static/js/drag/jquery-nestable.css";
+            document.getElementsByTagName('head')[0].appendChild(link);
+
+
+
+            var script=document.createElement("script");
+            script.type="text/javascript";
+            script.src="/static/js/drag/jquery-nestable.js";
+            document.getElementsByTagName('head')[0].appendChild(script);
+
+
+
+            script=document.createElement("script");
+            script.type="text/javascript";
+            script.src="/static/app/js/meta-editor.js";
+            document.getElementsByTagName('head')[0].appendChild(script);
+
+
+      ]]>
+    </helper-script>
+
+    <fields code="dataset.edit.field" name="编辑列信息">
+      <field code="#code" name="编码" edit-type="input" />
+      <field code="#name" name="名称" edit-type="input" />
+      <field code="tipinfo" name="描述" edit-type="input" />
+      <field code="#edit-type" name="编辑类型" edit-type="select">
+        <enum value="input" name="输入框"></enum>
+        <enum value="select" name="选择框"></enum>
+        <enum value="datetime" name="时间框"></enum>
+        <enum value="checkbox" name="复选框"></enum>
+        <enum value="radio" name="单选框"></enum>
+        <enum value="text" name="仅显示"></enum>
+        <enum value="hidden" name="隐藏"></enum>
+      </field>
+      <field code="#not-null" name="不能为空" edit-type="select">
+        <enum value="true" name="是"></enum>
+        <enum value="false" name="不是"></enum>
+      </field>
+      <field code="#is-key" name="是否主属性" edit-type="select">
+        <enum value="true" name="是"></enum>
+        <enum value="false" name="不是"></enum>
+      </field>
+      <field code="#is-name" name="是否主显示属性" edit-type="select">
+        <enum value="true" name="是"></enum>
+        <enum value="false" name="不是"></enum>
+      </field>
+      <field code="enum" name="取值范围" edit-type="component-panel" >
+        <rel entity-code="dataset_meta_xeditor#dataset.edit.field.enum"/>
+      </field>
+      <field code="#def-val" name="赋值" edit-type="select">
+        <enum value="incr" name="自增"></enum>
+        <enum value="cur_date" name="当前时间"></enum>
+        <enum value="cur_user_id" name="当前用户ID"></enum>
+      </field>
+    </fields>
+
+    <fields code="dataset.rule.field" name="编辑列信息">
+      <field code="#code" name="编码" edit-type="input" />
+      <field code="#name" name="名称" edit-type="input" />
+      <field code="tipinfo" name="描述" edit-type="input" />
+      <field code="#edit-type" name="编辑类型" edit-type="select">
+        <enum value="input" name="输入框"></enum>
+        <enum value="select" name="选择框"></enum>
+        <enum value="datetime" name="时间框"></enum>
+        <enum value="checkbox" name="复选框"></enum>
+        <enum value="radio" name="单选框"></enum>
+        <enum value="text" name="仅显示"></enum>
+      </field>
+      <field code="#is-key" name="是否主属性" edit-type="select">
+        <enum value="true" name="是"></enum>
+        <enum value="false" name="不是"></enum>
+      </field>
+      <field code="#is-name" name="是否主显示属性" edit-type="select">
+        <enum value="true" name="是"></enum>
+        <enum value="false" name="不是"></enum>
+      </field>
+      <field code="enum" name="取值范围" edit-type="component-panel" >
+        <rel entity-code="dataset_meta_xeditor#dataset.rule.field.enum"/>
+      </field>
+      <field code="#def-val" name="赋值" edit-type="select">
+        <enum value="incr" name="自增"></enum>
+        <enum value="cur_date" name="当前时间"></enum>
+        <enum value="cur_user_id" name="当前用户ID"></enum>
+      </field>
+    </fields>
+
+    <fields code="dataset.hid.field" name="编辑列信息">
+      <field code="#code" name="编码" edit-type="input" />
+      <field code="#name" name="名称" edit-type="input" />
+      <field code="tipinfo" name="描述" edit-type="input" />
+      <field code="#edit-type" name="编辑类型" edit-type="select">
+        <enum value="input" name="输入框"></enum>
+        <enum value="select" name="选择框"></enum>
+        <enum value="datetime" name="时间框"></enum>
+        <enum value="checkbox" name="复选框"></enum>
+        <enum value="radio" name="单选框"></enum>
+        <enum value="text" name="仅显示"></enum>
+      </field>
+      <field code="#is-key" name="是否主属性" edit-type="select">
+        <enum value="true" name="是"></enum>
+        <enum value="false" name="不是"></enum>
+      </field>
+      <field code="#is-name" name="是否主显示属性" edit-type="select">
+        <enum value="true" name="是"></enum>
+        <enum value="false" name="不是"></enum>
+      </field>
+      <field code="enum" name="取值范围" edit-type="component-panel" >
+        <rel entity-code="dataset_meta_xeditor#dataset.hid.field.enum"/>
+      </field>
+      <field code="#def-val" name="赋值" edit-type="select">
+        <enum value="incr" name="自增"></enum>
+        <enum value="cur_date" name="当前时间"></enum>
+        <enum value="cur_user_id" name="当前用户ID"></enum>
+      </field>
+    </fields>
+
+
+    <fields code="dataset.edit.field.enum" name="取值范围">
+      <field code="#value" name="枚举值" edit-type="input" />
+      <field code="#name" name="值描述" edit-type="input" />
+    </fields>
+
+    <fields code="dataset.rule.field.enum" extend="dataset.edit.field.enum" />
+    <fields code="dataset.hid.field.enum" extend="dataset.edit.field.enum" />
+  </descriptor>
+</dataset>

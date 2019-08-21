@@ -1,0 +1,72 @@
+<xml>
+    <query>
+        <![CDATA[
+              <page id="${tableCode}_mgr" name="${tableName}查询" page-template="qlist" data-set="runtime/${tableCode}_list">
+                    <component id="qForm" data-set="runtime/${tableCode}_cond"/>
+                    <component id="qList" data-set="runtime/${tableCode}_list"  event-extend="absolute_false">
+                        <event name="goto" description="选择">
+                             <attach anchor="EOFR">
+                                <appendElement type="icon" param='{fillclass:"btn-info",iconclass:"icon-zoom-in"}'></appendElement>
+                            </attach>
+                            <source scope="CROW" param="nodeId=${tableCode}&amp;dataId=\\${id}"></source>
+                            <effect type="parentPageFwd" action='/cfg/data_graph_init.html' isStack="true"></effect>
+                         </event>
+                    </component>
+              </page>
+        ]]>
+    </query>
+    <create>
+        <![CDATA[
+              <page id="${tableCode}_create" name="${tableName}创建" page-template="create" data-set="runtime/${tableCode}_create">
+                <component id="cForm" data-set="runtime/${tableCode}_create"   event-extend="absolute_false">
+                        <event name="submit" description="提交">
+                            <attach anchor="EOFC">
+                              <appendElement type="button" param='{btnclass:"btn-primary",btnText:" 提 交 "}'></appendElement>
+                            </attach>
+                            <source scope="EOC" param="thisForm"></source>
+                            <effect type="ajaxSubmit" action="/runtime_submits.json?tableCode=${tableCode}"></effect>
+                            <effect type="graphDbDiv"></effect>
+
+                         </event>
+                    </component>
+              </page>
+        ]]>
+    </create>
+    <update>
+        <![CDATA[
+              <page id="${tableCode}_edit" name="${tableName}修改" page-template="edit" data-set="runtime/${tableCode}_update">
+                    <component id="eForm" data-set="runtime/${tableCode}_update"   event-extend="absolute_false">
+                        <event name="submit" description="提交">
+                            <attach anchor="EOFC">
+                              <appendElement type="button" param='{btnclass:"btn-primary",btnText:" 提 交 "}'></appendElement>
+                            </attach>
+                            <source scope="EOC" param="thisForm"></source>
+                            <effect type="ajaxSubmit" action="/runtime_submits.json?tableCode=${tableCode}"></effect>
+                            <effect type="graphDbDiv"></effect>
+                         </event>
+                    </component>
+              </page>
+        ]]>
+    </update>
+    <detail>
+        <![CDATA[
+              <page id="${tableCode}_detail" name="${tableName}详情" page-template="detail" data-set="runtime/${tableCode}_list">
+                <component id="dForm" data-set="runtime/${tableCode}_list"  event-extend="absolute_false"/>
+              </page>
+        ]]>
+    </detail>
+    <list>
+        <![CDATA[
+             <page id="${tableCode}_list" name="${tableName}列表" page-template="dynamic" data-set="runtime/${tableCode}_list">
+                    <component id="qList" data-set="runtime/${tableCode}_list" event-extend="absolute_false"/>
+              </page>
+        ]]>
+    </list>
+    <eList>
+        <![CDATA[
+              <page id="${tableCode}_elist" name="${tableName}列表" page-template="elist" data-set="runtime/${tableCode}_update">
+                <component id="eList" data-set="runtime/${tableCode}_update" event-extend="absolute_false"/>
+              </page>
+        ]]>
+    </eList>
+</xml>

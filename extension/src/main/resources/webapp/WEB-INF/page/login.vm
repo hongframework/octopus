@@ -1,0 +1,216 @@
+#parse("blank_startpart.vm")
+<link rel="stylesheet" href="/static/js/login/home.css">
+<link rel="shortcut icon" href="http://cool.miaov.com/wangchong/favicon.ico">
+<body>
+<div id="warpper" class="warpper">
+    <a id="logo" class="logo" href="javascript:;">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="60px" height="30px">
+            <g class="color">
+                <path style="fill:none;stroke:#1C8CEA;stroke-width:4;stroke-miterlimit:10;" d="M26.25,23.688V8.312H9 M33.75,6.312v15.375H51"></path>
+            </g>
+            <g class="white">
+                <path style="fill:none;stroke:#fff;stroke-width:4;stroke-miterlimit:10;" d="M9,8.312h17.25v15.375 M51,21.688H33.75V6.312"></path>
+            </g>
+        </svg>
+    </a>
+    <!-- 菜单按钮 -->
+    <nav id="menu_btn" class="menu_btn" style="display:none;">
+        <span></span>
+        <i class="t"></i>
+        <i class="m"></i>
+        <i class="b"></i>
+    </nav>
+    <!-- 菜单内容 -->
+    <nav id="menu" class="menu" style="display:none;">
+        <div id="menu_canvas_wrapper" class="menu_canvas_wrapper">
+            <div id="menu_canvas" class=""></div>
+        </div>
+        <div id="menu_list" class="menu_list">
+            <a href="javascript:;" class="">
+                <span>Work</span>
+            </a>
+            <a href="javascript:;" class="">
+                <span>About</span>
+            </a>
+            <a href="javascript:;" class="">
+                <span>Contact</span>
+            </a>
+        </div>
+    </nav>
+    <!-- 上一页,下一页 -->
+    <ul id="hp_nav" class="hp_nav">
+        <li class="arrow prev animat">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40">
+                <path style="fill:none;stroke:#fff;stroke-miterlimit:10;" d="M20,1C9.507,1,1,9.507,1,20s8.507,19,19,19s19-8.507,19-19   S30.493,1,20,1z"></path>
+            </svg>
+        </li>
+        <li class="arrow next animat">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40">
+                <path style="fill:none;stroke:#fff;stroke-miterlimit:10;" d="M20,1C9.507,1,1,9.507,1,20s8.507,19,19,19s19-8.507,19-19   S30.493,1,20,1z"></path>
+            </svg>
+        </li>
+    </ul>
+    <!-- 第一页 -->
+    <div id="page1" class="page page1">
+        <div id="star" style="width: 1366px; height: 402px;">
+            <canvas id="canv" width="1366" height="402">您的浏览器不支持canvas</canvas>
+        </div>
+        <h1 id="title" class="title">
+            <span><span>Graph DB</span></span>
+            <span><span>No SQL, No API</span></span>
+            <i id="title_arrow" class="title_arrow">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="35px" height="45px">
+                    <path class="faded" style="fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;" d="M17.5,38.357L17.5,38.357 c-4.95,0-10.078-4.05-10.078-9V15.751c0-4.95,4.05-9,9-9h2.156c4.95,0,9,4.05,9,9v13.606C27.578,34.307,22.45,38.357,17.5,38.357z"></path>
+                    <path class="roll" style="fill: none; stroke: rgba(255, 255, 255,0.5); stroke-width: 2; stroke-linecap: round; stroke-miterlimit: 10;" d="M17.5,38.357L17.5,38.357  c-4.95,0-10.078-4.05-10.078-9V15.751c0-4.95,4.05-9,9-9h2.156c4.95,0,9,4.05,9,9v13.606C27.578,34.307,22.45,38.357,17.5,38.357z"></path>
+                    <path class="tip" style="fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;" d="M17.5,11.5v9.375"></path>
+                </svg>
+            </i>
+        </h1>
+    </div>
+    <!-- 第二页 -->
+    <div id="page2" class="page page2 out toLeft">
+        <div id="page2_bg" class="page_bg"></div>
+        <section class="mask"></section>
+        <section class="h_section up">
+            <h2><span>w</span><span>i</span><span>n</span><span>10</span><span>日</span><span>历</span></h2>
+        </section>
+        <a class="view_case" href="javascript:;">
+            <span>View Case</span>
+        </a>
+        <div class="lines">
+            <div class="line line1"></div>
+            <div class="line line2"></div>
+            <div class="line line3"></div>
+            <div class="line line4"></div>
+        </div>
+    </div>
+    <!-- 第三页 -->
+    <div id="page3" class="page page3 out toLeft">
+        <div id="page2_bg" class="page_bg"></div>
+        <section class="mask"></section>
+        <section class="h_section up">
+            <h2><span>音</span><span>乐</span><span>播</span><span>放</span><span>器</span></h2>
+        </section>
+        <a class="view_case" href="javascript:;">
+            <span>View Case</span>
+        </a>
+        <div class="lines">
+            <div class="line line1"></div>
+            <div class="line line2"></div>
+            <div class="line line3"></div>
+            <div class="line line4"></div>
+        </div>
+    </div>
+    <!-- 第四页 -->
+    <div id="page4" class="page page4 out toLeft">
+        <div id="page2_bg" class="page_bg"></div>
+        <section class="mask"></section>
+        <section class="h_section up">
+            <h2><span>植</span><span>物</span><span>大</span><span>战</span><span>僵</span><span>尸</span></h2>
+        </section>
+        <a class="view_case" href="javascript:;">
+            <span>View Case</span>
+        </a>
+        <div class="lines">
+            <div class="line line1"></div>
+            <div class="line line2"></div>
+            <div class="line line3"></div>
+            <div class="line line4"></div>
+        </div>
+    </div>
+    <!-- 第五页 -->
+    <!--         <div id="page5" class="page page5 Right">
+        <div id="page2_bg" class="page_bg"></div>
+        <section class="mask"></section>
+        <section class="h_section">
+            <h2><span>百</span><span>度</span><span>网</span><span>盘</span></h2>
+        </section>
+        <a class="view_case" href="javascript:;">
+            <span>View Case</span>
+        </a>
+        <div class="lines">
+            <div class="line line1"></div>
+            <div class="line line2"></div>
+            <div class="line line3"></div>
+            <div class="line line4"></div>
+        </div>
+    </div> -->
+    <!--第六页-->
+    <div id="page6" class="page page6 out toLeft">
+        <div id="page2_bg" class="page_bg"></div>
+        <section class="mask"></section>
+        <section class="h_section up">
+            <h2><span>移</span><span>动</span><span>端</span><span>桌</span><span>面</span></h2>
+        </section>
+        <a class="view_case" href="javascript:;">
+            <span>View Case</span>
+        </a>
+        <div class="lines">
+            <div class="line line1"></div>
+            <div class="line line2"></div>
+            <div class="line line3"></div>
+            <div class="line line4"></div>
+        </div>
+    </div>
+
+    <div id="login" class="login" style="display: none;">
+        <div class="login1"></div>
+        <div class="login2"></div>
+        <div class="login3"></div>
+        <div class="login4"></div>
+        <div class="login5"></div>
+    </div>
+
+    <div id="loadmask" class="loadmask">
+        <svg width="40px" height="40px" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 27 V 15 H 2 V 2 H 38 V 22" style="fill:none;stroke:rgba(0,0,0,0.5);stroke-width: 4px"></path>
+            <path d="M23 13 V 25 H 38 V 38 H 2 V 18" style="fill:none;stroke:rgba(0,0,0,0.5);stroke-width: 4px"></path>
+
+            <path class="turnPage" d="M17 27 V 15 H 2 V 2 H 38 V 22" style="fill:none;stroke:#fff;stroke-width: 4px"></path>
+            <path class="turnPage" d="M23 13 V 25 H 38 V 38 H 2 V 18" style="fill:none;stroke:#fff;stroke-width: 4px"></path>
+        </svg>
+    </div>
+
+</div>
+
+
+
+
+<script>
+    // $(function() {
+
+
+
+
+
+
+    // });
+</script>
+
+<div class="container-fluid-full">
+    <div class="row-fluid">
+        #foreach($element in $elements.entrySet())
+            <div class="row-fluid">
+                #if($element.value.component == "cForm")
+							#set($form = $element.value)
+							#parse("component/login.vm")
+						#end
+            </div>
+        #end
+    </div><!--/fluid-row-->
+
+</div><!--/.fluid-container-->
+
+    #parse("blank_endpart.vm")
+
+##<script src="/static/js/login/jquery.mousewheel.js"></script>
+<script src="/static/js/login/star.js"></script>
+
+<style>
+    .container-fluid-full {top:-930px;}
+    .login-box {position: absolute;right:150px;}
+    .page1 .title span {height:100px;}
+    #title {font-size:4vw;}
+</style>
+</body>
+</html>

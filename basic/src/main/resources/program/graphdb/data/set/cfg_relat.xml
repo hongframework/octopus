@@ -1,0 +1,38 @@
+<dataset>
+  <module>cfg</module>
+  <code>cfg_relat</code>
+  <entity>cfg_relat</entity>
+  <name>数据关系【默认】</name>
+  <fields>
+    <field code="id" name="数据关系id" edit-type="hidden" is-key="true" not-null="true"/>
+    <field code="type" name="数据关系类型" edit-type="select">
+      <enum-class code="cfg_ relat.type"/>
+    </field>
+    <field code="source_table" name="来源表" edit-type="input" not-null="true"/>
+    <field code="target_table" name="目标表" edit-type="input" not-null="true"/>
+    <field code="status" name="状态" edit-type="select">
+      <enum-class code="cfg_ relat.status"/>
+    </field>
+    <field code="source_field" name="来源字段" edit-type="input" not-null="true"/>
+    <field code="creator_id" name="创建人" edit-type="hidden">
+      <rel entity-code="user/user_id/user_name" add-by-global="true"/>
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>text</update-edit-type>
+    </field>
+    <field code="create_time" name="创建时间" edit-type="hidden">
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>text</update-edit-type>
+    </field>
+    <field code="target_field" name="目标字段" edit-type="input" not-null="true"/>
+    <field code="modifier_id" name="修改人" edit-type="hidden">
+      <rel entity-code="user/user_id/user_name" add-by-global="true"/>
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>hidden</update-edit-type>
+    </field>
+    <field code="modify_time" name="修改时间" edit-type="hidden">
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>hidden</update-edit-type>
+    </field>
+    <field code="description" name="数据关系描述" edit-type="input"/>
+  </fields>
+</dataset>
